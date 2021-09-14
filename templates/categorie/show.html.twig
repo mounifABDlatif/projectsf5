@@ -1,0 +1,87 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Categorie
+{% endblock %}
+
+{% block body %}
+	<h1>Categorie</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ categorie.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ categorie.titre }}</td>
+			</tr>
+			<tr>
+				<th>Mots</th>
+				<td>{{ categorie.mots }}</td>
+			</tr>
+
+			<tr>
+				<th>Livres de la catégorie</th>
+				<td>
+					<ul class="list-group">
+						{% for livre in categorie.livres %}
+							<li class="list-group-item">
+								<a href="{{ path("livre_show", { id: livre.id }) }}"></a>
+								{{ livre.id }}
+								-
+								{{ livre.titre }}
+								de
+								{{ livre.auteur }}
+							</li>
+						{% endfor %}
+					</ul>
+
+
+					{# <table class="table">
+						<thead>
+							<tr>
+								<th>Titre</th>
+								<th>Date_emprunt</th>
+								<th>Date_retour</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for livre in categorie.livres %}
+
+								<tr>
+									<td>{{ livre.id }}</td>
+									<td>
+										<img src="{{ dossier_images ~ livre.couverture }}" alt="{{ livre.titre }}" class="miniature">
+									</td>
+									<td>{{ livre.titre }}</td>
+									<td>{{ livre.auteur }}</td>
+								</tr>
+								<tr>
+									<a href="{{ path("profil_emprunter", { id: livre.id }) }}" class="card-link">
+										<i class="fa fa-cart-arrow-down"></i>
+										Emprunter ce livre
+									</a>
+								{% else %}
+									<tr>
+										<td colspan="3">
+											<i class="fa fa-times text-danger"></i>
+											Livre non disponible pour le moment</td>
+									</tr>
+								{% endfor %}
+
+							</tbody>
+						</tbody>
+					</table> #}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('categorie_index') }}">back to list</a>
+
+	<a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+
+	{{ include('categorie/_delete_form.html.twig') }}
+{% endblock %}

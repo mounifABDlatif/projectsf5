@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block liste %}
+
+<table>
+    <thead>
+        <th>N° dans l'URL</th>
+        <th>N° *2</th>
+        <th>Au carré</th>
+    </thead>
+
+    <tbody>
+        {% for i in 1..nombre %}
+
+            <tr>
+                <td>{{ i }}</td>
+                <td>{{ i * 2 }}</td>
+                <td>{{ i * i}}</td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+
+</table>
+
+
+{% endblock %}

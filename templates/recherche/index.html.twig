@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h2>Résultats de la recherche <code>{{ mot }}</code></h2>
+
+    <div class="card-columns">
+
+        {% for livre in livres %}
+            {% include "livre/vignette.html.twig" %}
+        {% endfor %}
+    
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Emprunt
+{% endblock %}
+
+{% block body %}
+	<h1>Emprunt</h1>
+
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th>ID</th>
+				<th>Titre</th>
+				<th>Auteur</th>
+				<th>Catégorie</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ livre.id }}</td>
+				<td>{{ livre.titre }}</td>
+				<td>{{ livre.auteur }}</td>
+				<td>{{ livre.categorie ? livre.categorie.titre : "" }}</td>
+			</tr>
+			<tr>
+				{% for emprunt in livre.emprunts %}
+					<tr>
+						<td>{{ emprunt.abonne.prenom }}</td>
+						<td>{{ emprunt.dateEmprunt|date('d/m/y') }}</td>
+						<td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('d/m/y') : '' }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Aucun emprunt enregistré</td>
+					</tr>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path("livre") }}"><i class="fa fa-reply"></i></a>
+{% endblock %}
