@@ -1,0 +1,15 @@
+<ul class="list-groupp">
+	<li class="list-group-item">Abonnés</li>
+	{% for abonne in abonnes %}
+		<li class="list-group-item">
+			<a href="{{ path("abonne_show", {id: abonne.id}) }}" class="btn btn-secondary">
+				{{ abonne.pseudo }},
+				{{ abonne.prenom }}
+				{{ abonne.nom }}
+
+			</a>
+		</li>
+	{% else %}
+		Aucun abonné ne correspond à cette recherche
+	{% endfor %}
+</ul>

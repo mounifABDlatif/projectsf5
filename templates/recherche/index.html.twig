@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Résultats de la recherche{% endblock %}
+{% block title %}Résultats de la recherche
+{% endblock %}
 
 {% block body %}
-    <h2>Résultats de la recherche <code>{{ mot }}</code></h2>
+	<h2>Résultats de la recherche
+		<code>{{ mot }}</code>
+	</h2>
 
-    <div class="card-columns">
+	<div class="card-columns">
 
-        {% for livre in livres %}
-            {% include "livre/vignette.html.twig" %}
-        {% endfor %}
-    
-    </div>
+		{% for livre in livres %}
+			{% include "livre/vignette.html.twig" %}
+		{% endfor %}
+
+	</div>
+	{% if is_granted("ROLE_BIBLIO") %}
+		{% include "abonne/vignette_abonne.html.twig" %}
+	{% endif %}
 {% endblock %}
